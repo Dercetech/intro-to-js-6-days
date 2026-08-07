@@ -1,0 +1,59 @@
+# Local environment
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Dependencies and virtual environments
+node_modules/
+vendor/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.venv/
+venv/
+
+# Generated build and test output
+dist/
+build/
+coverage/
+.nyc_output/
+htmlcov/
+.cache/
+.parcel-cache/
+.vite/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+# Logs, temporary files and merge/editor leftovers
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.orig
+*.rej
+*~
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.code-workspace
+*.suo
+*.user
+
+# Operating-system metadata
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
