@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -25,36 +26,36 @@ h1 { font-size: 1.25rem; margin-bottom: 1rem; color: #ffcc00; }
 <body>
 <h1>RBMK-1500 · Reactor 4 · Control dashboard</h1>
   <div class="dashboard">
-    <section class="panel">
+    <section class="panel" id="status-panel">
       <h2>État réacteur</h2>
       <p id="reactor-status" class="status-ok">NOMINAL</p>
       <p>Puissance : <span id="power-mw">3200</span> MW</p>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="rods-panel">
       <h2>Barres de contrôle</h2>
-      <div>
+      <div class="control-rods">
         <div class="control-rod inserted" data-rod="1"><span>1</span></div>
         <div class="control-rod inserted" data-rod="2"><span>2</span></div>
         <div class="control-rod" data-rod="3"><span>3</span></div>
         <div class="control-rod inserted" data-rod="4"><span>4</span></div>
-        <div class="control-rod inserted" data-rod="5"><span>5</span></div>
+        <div class="control-rod" data-rod="5"><span>5</span></div>
       </div>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="gauges-panel">
       <h2>Mesures</h2>
       <div class="gauge" data-unit="C">
-        <div class="gauge-label">Température sortie</div>
-        <div>284 C</div>
+        <span class="gauge-label">Température sortie</span>
+        <strong class="gauge-value">284</strong> C
       </div>
       <div class="gauge" data-unit="t/h">
-        <div class="gauge-label">Débit vapeur</div>
-        <div>5400 t/h</div>
+        <span class="gauge-label">Débit vapeur</span>
+        <strong class="gauge-value">5400</strong> t/h
       </div>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="alarms-panel">
       <h2>Alarmes</h2>
       <div class="alarm inactive">AZ-5 non armé</div>
       <div class="alarm">Pression circuit primaire</div>
@@ -66,7 +67,7 @@ h1 { font-size: 1.25rem; margin-bottom: 1rem; color: #ffcc00; }
       <button id="scram" type="button">SCRAM</button>
     </section>
 
-    <section class="panel">
+    <section class="panel" id="log-panel">
       <h2>Journal</h2>
       <div class="log-entry">[08:42:11] Démarrage séquence normale</div>
       <div class="log-entry">[08:47:03] Puissance stabilisée 3200 MW</div>
