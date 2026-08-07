@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reactor 4 – jQuery (extra)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #1a1a1a; color: #e0e0e0; margin: 0; padding: 1.5rem; }
+    h1 { font-size: 1.25rem; margin-bottom: 1rem; color: #ffcc00; }
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 960px; }
+    .panel { background: #2a2a2a; border: 1px solid #444; border-radius: 6px; padding: 1rem; }
+    .panel h2 { margin: 0 0 0.75rem; font-size: 1rem; color: #aaa; }
+    #reactor-status { font-size: 1.15rem; font-weight: 600; }
+    .status-ok { color: #4caf50; }
+    .status-warning { color: #ff9800; }
+    .status-critical { color: #f44336; }
+    .control-rod { display: inline-block; width: 28px; height: 80px; background: #555; margin: 0 4px; border-radius: 2px; vertical-align: bottom; position: relative; }
+    .control-rod.inserted { background: #2196f3; }
+    .control-rod span { position: absolute; bottom: -1.4rem; left: 0; right: 0; text-align: center; font-size: 0.7rem; color: #999; }
+    .gauge { margin: 0.5rem 0; }
+    .gauge-label { font-size: 0.85rem; color: #999; }
+    .alarm { padding: 0.4rem 0.6rem; margin: 0.25rem 0; background: #3a2a2a; border-left: 4px solid #f44336; font-size: 0.9rem; }
+    .alarm.inactive { opacity: 0.4; border-left-color: #555; }
+    #scram { background: #b71c1c; color: white; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 700; cursor: pointer; border-radius: 4px; }
+    #scram:disabled { background: #555; cursor: not-allowed; }
+    .log-entry { font-family: monospace; font-size: 0.8rem; color: #8bc34a; margin: 0.15rem 0; }
+    .status-light { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: #4caf50; margin-right: 0.4rem; vertical-align: middle; }
+    .status-light.warning { background: #ff9800; }
+    .status-light.critical { background: #f44336; }
+  </style>
+  <!-- jQuery 3.x from CDN – for this extra only -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>RBMK-1500 · Reactor 4 · jQuery (extra)</h1>
+
+  <div class="dashboard">
+
+    <section class="panel" id="status-panel">
+      <h2>État réacteur</h2>
+      <p>
+        <span class="status-light" id="status-light"></span>
+        <span id="reactor-status" class="status-ok">NOMINAL</span>
+      </p>
+      <p>Puissance : <span id="power-mw">3200</span> MW</p>
+      <p>Mode : <span id="operation-mode" data-mode="normal">Normal</span></p>
+    </section>
+
+    <section class="panel" id="rods-panel">
+      <h2>Barres de contrôle</h2>
+      <div id="rods-container">
+        <div class="control-rod inserted" data-rod="1"><span>1</span></div>
+        <div class="control-rod inserted" data-rod="2"><span>2</span></div>
+        <div class="control-rod" data-rod="3"><span>3</span></div>
+        <div class="control-rod inserted" data-rod="4"><span>4</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="gauges-panel">
+      <h2>Mesures</h2>
+      <div class="gauge" data-unit="C" id="temp-gauge">
+        <span class="gauge-label">Température sortie</span>
+        <strong class="gauge-value" id="temp-value">284</strong> C
+      </div>
+      <div class="gauge" data-unit="t/h">
+        <span class="gauge-label">Débit vapeur</span>
+        <strong class="gauge-value" id="flow-value">5400</strong> t/h
+      </div>
+    </section>
+
+    <section class="panel" id="alarms-panel">
+      <h2>Alarmes</h2>
+      <div id="alarms-container">
+        <div class="alarm inactive" id="alarm-az5">AZ-5 non armé</div>
+        <div class="alarm" id="alarm-pressure">Pression circuit primaire</div>
+        <div class="alarm inactive" id="alarm-level">Niveau eau tambour</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Actions</h2>
+      <button id="scram" type="button">SCRAM</button>
+    </section>
+
+    <section class="panel" id="log-panel">
+      <h2>Journal</h2>
+      <div id="log-container">
+        <div class="log-entry">[08:42:11] Démarrage séquence normale</div>
+        <div class="log-entry">[08:47:03] Puissance stabilisée 3200 MW</div>
+        <div class="log-entry">[08:51:22] Barre 3 relevée pour test</div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
