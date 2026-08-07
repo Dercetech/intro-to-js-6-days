@@ -95,7 +95,7 @@ Objectif : exécuter du JavaScript dans le navigateur, comprendre les bases du l
 
 DevTools : Console et Elements.
 
-### Jour 2 — Structures de données et contrôle de flux
+### Jour 2 — Structures de données & Debugger
 
 Objectif : manipuler tableaux et objets, comprendre les closures et observer réellement l’exécution dans le panneau Sources.
 
@@ -126,7 +126,7 @@ Objectif : sélectionner, lire, modifier, créer et supprimer des éléments san
 
 DevTools : Elements et Console, avec vérification immédiate de l’état du DOM.
 
-### Jour 4 — Events & Listeners
+### Jour 4 — Événements & interfaces interactives
 
 Objectif : comprendre le trajet d’un événement, traiter les interactions et appliquer la délégation d’événements aux interfaces dynamiques.
 
@@ -141,7 +141,7 @@ Objectif : comprendre le trajet d’un événement, traiter les interactions et 
 
 DevTools : Event Listeners, breakpoints d’événements et inspection de l’objet `event`.
 
-### Jour 5 — Appels asynchrones & réseau
+### Jour 5 — Asynchrone & Network
 
 Objectif : gérer les résultats différés, les erreurs et les états d’interface, puis inspecter les échanges HTTP dans Network.
 
@@ -157,7 +157,7 @@ Objectif : gérer les résultats différés, les erreurs et les états d’inter
 
 DevTools : Network, statuts HTTP, payloads, réponses, timing et simulation des erreurs.
 
-### Jour 6 — Architecture & exploration
+### Jour 6 — Architecture & polish
 
 Objectif : découper le code en modules, reconnaître les fonctions d’ordre supérieur et organiser une application navigateur sans framework.
 
