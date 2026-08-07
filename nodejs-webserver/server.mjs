@@ -3,7 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const port = Number(process.env.PORT ?? 8080);
+const port = Number(process.env.PORT ?? 8081);
 const websiteRoot = resolve(fileURLToPath(new URL("../www/", import.meta.url)));
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
