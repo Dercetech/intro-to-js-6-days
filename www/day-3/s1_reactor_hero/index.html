@@ -118,6 +118,13 @@
     .metric-value.red { color: var(--red); }
     .metric-detail { display: block; margin-top: .25rem; color: var(--muted); font-size: .76rem; }
 
+    .xenon-card { grid-column: 1 / -1; padding: 0; }
+    .xenon-card summary { cursor: pointer; padding: .75rem; }
+    .xenon-card summary::marker { color: var(--amber); }
+    .xenon-card .metric-label { display: inline; margin-right: .45rem; }
+    .xenon-card .metric-value { display: inline; color: var(--amber); font-size: 1rem; }
+    .xenon-card p { margin: 0; padding: 0 .75rem .75rem; color: var(--muted); font-size: .78rem; line-height: 1.45; }
+
     .neutron-box { margin-bottom: .8rem; padding: .75rem; border: 1px solid #31404c; border-radius: .55rem; background: #080d12; }
     .neutron-track { position: relative; height: 2.2rem; overflow: hidden; border-radius: .35rem; background: linear-gradient(90deg, #071018, #122d42, #071018); }
     .neutron-particle { position: absolute; top: 50%; left: -1rem; width: .42rem; height: .42rem; border-radius: 50%; background: #9bdcff; box-shadow: 0 0 .7rem #48a9ff; animation: neutron-flight 2s linear infinite; animation-delay: var(--delay); }
@@ -216,8 +223,11 @@
             <div class="metric"><span class="metric-label">Puissance thermique</span><output class="metric-value" id="thermal-power">3 200 MWth</output></div>
             <div class="metric"><span class="metric-label">Puissance électrique</span><output class="metric-value" id="electric-power">1 000 MWe</output></div>
             <div class="metric wide"><span class="metric-label">Température réacteur</span><output class="metric-value" id="reactor-temperature">284 °C</output></div>
+            <details class="metric xenon-card">
+              <summary aria-expanded="false"><span class="metric-label">Xénon-135 · estimation cachée</span><output class="metric-value" id="xenon-level">18.0 %</output></summary>
+              <p>Le RBMK ne disposait pas d’un « xénonmètre » direct. Cette valeur interne est une estimation du simulateur.</p>
+            </details>
           </div>
-          <output id="xenon-level" hidden>18.0 %</output>
         </div>
       </section>
 
@@ -229,6 +239,7 @@
             <input id="water-flow" type="range" min="0" max="120" step="1" value="100">
           </div>
           <div class="metric-grid">
+            <div class="metric wide"><span class="metric-label">État du débit</span><output class="metric-value" id="water-flow-status">EN SERVICE</output><span class="metric-detail" id="water-flow-detail">Pompes principales · débit réel 100 %</span></div>
             <div class="metric"><span class="metric-label">Circuit primaire</span><output class="metric-value" id="primary-temperature">284 °C</output></div>
             <div class="metric"><span class="metric-label">Circuit secondaire</span><output class="metric-value" id="secondary-temperature">260 °C</output></div>
             <div class="metric wide"><span class="metric-label">Bulles de vapeur · coefficient de vide positif</span><output class="metric-value" id="steam-bubbles">0 %</output><span class="metric-detail">plus de vapeur peut augmenter la réactivité</span></div>

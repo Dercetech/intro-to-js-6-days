@@ -17,8 +17,12 @@ const elements = {
   electricPower: document.querySelector("#electric-power"),
   reactorTemperature: document.querySelector("#reactor-temperature"),
   xenonLevel: document.querySelector("#xenon-level"),
+  xenonCard: document.querySelector(".xenon-card"),
+  xenonSummary: document.querySelector(".xenon-card summary"),
   waterFlow: document.querySelector("#water-flow"),
   waterFlowOutput: document.querySelector("#water-flow-output"),
+  waterFlowStatus: document.querySelector("#water-flow-status"),
+  waterFlowDetail: document.querySelector("#water-flow-detail"),
   primaryTemperature: document.querySelector("#primary-temperature"),
   secondaryTemperature: document.querySelector("#secondary-temperature"),
   steamBubbles: document.querySelector("#steam-bubbles"),
@@ -47,6 +51,9 @@ function createInitialState() {
     previousPower: NOMINAL_POWER,
     neutronFlux: 100,
     waterFlow: 100,
+    mainPumpsOnline: true,
+    emergencyCoolingOnline: false,
+    coolingLossSeconds: 0,
     reactorTemperature: 284,
     primaryTemperature: 284,
     secondaryTemperature: 260,
@@ -227,6 +234,11 @@ function updateScram() {
 }
 
 function updateDiesel() {
+  if (state.diesel.mode === "online") {
+    engageEmergencyCooling();
+    return;
+  }
+
   if (state.diesel.mode !== "starting") return;
 
   state.diesel.remaining = Math.max(0, state.diesel.remaining - TICK_SECONDS);
@@ -234,7 +246,17 @@ function updateDiesel() {
     state.diesel.mode = "online";
     state.diesel.online = true;
     logEvent("Diesel generators synchronisés et disponibles.", "info");
+    engageEmergencyCooling();
   }
+}
+
+function engageEmergencyCooling() {
+  if (state.mainPumpsOnline || state.emergencyCoolingOnline || !state.diesel.online) return;
+
+  state.emergencyCoolingOnline = true;
+  state.waterFlow = 45;
+  elements.waterFlow.value = "45";
+  logEvent("Refroidissement de secours alimenté par les diesels · débit rétabli à 45%.", "warning");
 }
 
 function calculateCriticality() {
@@ -259,7 +281,15 @@ function updatePhysics() {
 
   const powerRatio = state.thermalPower / NOMINAL_POWER;
   const flowPenalty = Math.max(0, 100 - state.waterFlow);
-  const targetReactorTemperature = 260 + 24 * powerRatio + flowPenalty * (0.75 + powerRatio * 0.08);
+
+  if (!state.mainPumpsOnline && !state.emergencyCoolingOnline) {
+    state.coolingLossSeconds += TICK_SECONDS;
+  } else {
+    state.coolingLossSeconds = Math.max(0, state.coolingLossSeconds - TICK_SECONDS * 0.35);
+  }
+
+  const coolingLossHeat = Math.pow(state.coolingLossSeconds, 1.35) * 5;
+  const targetReactorTemperature = 260 + 24 * powerRatio + flowPenalty * (0.75 + powerRatio * 0.08) + coolingLossHeat;
   state.reactorTemperature = approach(state.reactorTemperature, targetReactorTemperature, 0.16);
   state.primaryTemperature = approach(state.primaryTemperature, state.reactorTemperature + flowPenalty * 0.08, 0.2);
 
@@ -285,7 +315,8 @@ function updatePhysics() {
 }
 
 function updateBuilding() {
-  const blastConditions = state.reactorTemperature > 650 && state.steamBubbles > 55 && state.thermalPower > 9000;
+  const prolongedCoolingLoss = !state.mainPumpsOnline && !state.emergencyCoolingOnline && state.coolingLossSeconds > 22;
+  const blastConditions = state.reactorTemperature > 650 && state.steamBubbles > 55 && (state.thermalPower > 9000 || prolongedCoolingLoss);
   state.hydrogenExposure = blastConditions ? state.hydrogenExposure + TICK_SECONDS : Math.max(0, state.hydrogenExposure - TICK_SECONDS * 0.35);
 
   if (!state.hydrogenBlast && state.hydrogenExposure >= 3) {
@@ -317,6 +348,9 @@ function updateAlarms() {
   setAlarm("power", state.thermalPower > 4500, "Puissance réacteur élevée", "danger");
   setAlarm("temperature", state.reactorTemperature > 360, "Température réacteur élevée", "danger");
   setAlarm("flow", state.waterFlow < 70, "Débit d’eau insuffisant", "warning");
+  setAlarm("main-pumps", !state.mainPumpsOnline, "Pompes principales arrêtées", "danger");
+  setAlarm("cooling-loss", !state.mainPumpsOnline && !state.emergencyCoolingOnline, "Perte totale du débit de refroidissement", "danger");
+  setAlarm("emergency-cooling", state.emergencyCoolingOnline, "Refroidissement de secours limité à 45%", "warning");
   setAlarm("voids", state.steamBubbles > 12, "Bulles de vapeur · coefficient de vide positif", "danger");
   setAlarm("diesel", state.diesel.mode === "starting", "Diesel generators en phase de spin-up", "warning");
   setAlarm("radiation", state.radiationActual > 3.6, "Radiamètre de salle saturé à 3.6 R/h", "danger");
@@ -389,6 +423,23 @@ function render() {
   elements.reactorTemperature.textContent = formatNumber(state.reactorTemperature, 0) + " °C";
   elements.xenonLevel.textContent = formatNumber(state.xenonLevel * 100, 1) + " %";
   elements.waterFlowOutput.textContent = formatNumber(state.waterFlow, 0) + " %";
+  elements.waterFlow.value = String(state.waterFlow);
+  elements.waterFlow.disabled = !state.mainPumpsOnline;
+
+  if (state.mainPumpsOnline) {
+    elements.waterFlowStatus.textContent = "EN SERVICE";
+    elements.waterFlowDetail.textContent = "Pompes principales · débit réel " + formatNumber(state.waterFlow, 0) + " %";
+    setMetricTone(elements.waterFlowStatus, state.waterFlow < 70 ? "amber" : "green");
+  } else if (state.emergencyCoolingOnline) {
+    elements.waterFlowStatus.textContent = "SECOURS";
+    elements.waterFlowDetail.textContent = "Pompes principales arrêtées · diesels · débit réel 45 %";
+    setMetricTone(elements.waterFlowStatus, "amber");
+  } else {
+    elements.waterFlowStatus.textContent = "PERDU";
+    elements.waterFlowDetail.textContent = "Pompes principales arrêtées · débit réel 0 %";
+    setMetricTone(elements.waterFlowStatus, "red");
+  }
+
   elements.primaryTemperature.textContent = formatNumber(state.primaryTemperature, 0) + " °C";
   elements.secondaryTemperature.textContent = formatNumber(state.secondaryTemperature, 0) + " °C";
   elements.steamBubbles.textContent = formatNumber(state.steamBubbles, 1) + " %";
@@ -476,7 +527,15 @@ function activateScram() {
   state.scram.elapsed = 0;
   state.scram.boost = 0.245;
   state.scram.peakLogged = false;
+  state.mainPumpsOnline = false;
+  state.emergencyCoolingOnline = false;
+  state.waterFlow = 0;
+  state.coolingLossSeconds = 0;
+  elements.waterFlow.value = "0";
   logEvent("AZ-5 déclenché · descente d’urgence des barres.", "danger");
+  logEvent("Pompes principales déclenchées · débit de refroidissement perdu.", "danger");
+  startDiesel(true);
+  engageEmergencyCooling();
   render();
 }
 
@@ -492,10 +551,12 @@ function startDiesel(automatic) {
 function resetSimulation() {
   state = createInitialState();
   elements.waterFlow.value = "100";
+  elements.xenonCard.open = false;
+  elements.xenonSummary.setAttribute("aria-expanded", "false");
   elements.eventLog.replaceChildren();
   createRodControls();
   logEvent("Reactor 4 initialisé · puissance stable à 3 200 MWth.", "info");
-  logEvent("Xénon suivi en interne. Valeur volontairement masquée du tableau.", "info");
+  logEvent("Xénon-135 estimé par le simulateur · carte repliée par défaut.", "info");
   render();
 }
 
@@ -509,6 +570,12 @@ elements.waterFlow.addEventListener("input", function () {
   state.waterFlow = Number(elements.waterFlow.value);
   logEvent("Débit d’eau réglé à " + String(state.waterFlow) + "%.", state.waterFlow < 70 ? "warning" : "info");
   render();
+});
+
+elements.xenonSummary.addEventListener("click", function (event) {
+  event.preventDefault();
+  elements.xenonCard.open = !elements.xenonCard.open;
+  elements.xenonSummary.setAttribute("aria-expanded", String(elements.xenonCard.open));
 });
 
 elements.scram.addEventListener("click", activateScram);
@@ -526,6 +593,9 @@ Object.defineProperty(window, "__reactorDiagnostics", {
         thermalPower: state.thermalPower,
         neutronFlux: state.neutronFlux,
         xenonLevel: state.xenonLevel,
+        waterFlow: state.waterFlow,
+        mainPumpsOnline: state.mainPumpsOnline,
+        emergencyCoolingOnline: state.emergencyCoolingOnline,
         steamBubbles: state.steamBubbles,
         radiationActual: state.radiationActual
       });
@@ -536,6 +606,6 @@ Object.defineProperty(window, "__reactorDiagnostics", {
 createNeutronParticles();
 createRodControls();
 logEvent("Reactor 4 initialisé · puissance stable à 3 200 MWth.", "info");
-logEvent("Xénon suivi en interne. Valeur volontairement masquée du tableau.", "info");
+logEvent("Xénon-135 estimé par le simulateur · carte repliée par défaut.", "info");
 render();
 window.setInterval(tick, TICK_MS);
