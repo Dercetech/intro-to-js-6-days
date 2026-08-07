@@ -1,50 +1,63 @@
 // ============================================================
-// Section 05 – this : règles claires · Corrigé
+// Section 05 – this : comprendre le problème et les solutions · Corrigé
 // ============================================================
 
-// 1. Appel simple
-function showThis() {
-  console.log("showThis →", this);
+// 1. Le problème classique
+{
+  const user = {
+    name: "Alex",
+    greet() {
+      console.log("Bonjour " + this.name);
+    }
+  };
+
+  user.greet();
+
+  const fn = user.greet;
+  fn();
 }
-showThis(); // window (ou undefined en strict mode)
 
 
-// 2. Méthode d’objet
-const user = {
-  name: "Alex",
-  greet() {
-    console.log("Bonjour, je suis", this.name);
-  }
-};
-user.greet(); // Alex
+// 2. L’ancienne solution : that / self
+{
+  const user = {
+    name: "Alex",
+    greet() {
+      const that = this;
+      setTimeout(function () {
+        console.log("Bonjour " + that.name);
+      }, 100);
+    }
+  };
 
-
-// 3. Perte de this – corrigé avec bind
-const greetFn = user.greet.bind(user);
-greetFn(); // Alex
-
-
-// 4. Arrow vs classique
-const counter = {
-  count: 0,
-  incrementClassic: function () {
-    this.count++;
-    console.log("classic →", this.count);
-  },
-  incrementArrow: () => {
-    // this n’est pas counter ici
-    console.log("arrow this →", this);
-  }
-};
-counter.incrementClassic(); // 1
-counter.incrementArrow();   // this = window / undefined
-
-
-// 5. call / bind
-function present(city) {
-  console.log(`${this.name} habite à ${city}`);
+  user.greet();
 }
-const person = { name: "Sam" };
-present.call(person, "Lyon");
-const presentSam = present.bind(person);
-presentSam("Paris");
+
+
+// 3. Amélioration : bind
+{
+  const user = {
+    name: "Alex",
+    greet() {
+      console.log("Bonjour " + this.name);
+    }
+  };
+
+  const fn = user.greet.bind(user);
+  fn();
+}
+
+
+// 4. Solution moderne : les arrow functions
+{
+  const user = {
+    name: "Alex",
+    greet() {
+      setTimeout(() => {
+        console.log("Bonjour " + this.name);
+      }, 100);
+    }
+  };
+
+  user.greet();
+}
