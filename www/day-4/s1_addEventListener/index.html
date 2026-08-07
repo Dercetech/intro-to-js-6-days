@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>addEventListener &amp; l’objet event</title>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    button, input { margin: 0.5rem 0.5rem 0.5rem 0; padding: 0.4rem 0.8rem; font-size: 1rem; }
+    #log { margin-top: 1.5rem; padding: 1rem; background: #f4f4f4; min-height: 4rem; }
+    .box { border: 2px solid #333; padding: 1rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Section 01 – addEventListener</h1>
+  <p>Ouvrez la Console et le panneau Elements (F12). Travaillez dans scripts.js.</p>
+
+  <button id="btn-simple">Cliquez-moi</button>
+  <button id="btn-remove">Écouteur à retirer</button>
+
+  <div class="box" id="parent">
+    Parent
+    <button id="btn-child">Enfant</button>
+  </div>
+
+  <div>
+    <label>Champ texte : <input type="text" id="field" placeholder="tapez ici"></label>
+  </div>
+
+  <div id="log">Les messages de log apparaîtront aussi ici.</div>
+</body>
+</html>
