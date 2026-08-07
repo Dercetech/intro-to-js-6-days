@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>localStorage / sessionStorage</title>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    label { display: block; margin: 0.8rem 0 0.3rem; }
+    select, input[type="text"] { padding: 0.4rem 0.6rem; font-size: 1rem; min-width: 220px; }
+    button { margin: 0.8rem 0.5rem 0.5rem 0; padding: 0.4rem 0.8rem; font-size: 1rem; }
+    #status { margin-top: 1.2rem; padding: 0.6rem 0.8rem; background: #f4f4f4; min-height: 1.4rem; }
+    .hint { font-size: 0.9rem; color: #666; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Section 05 – Storage</h1>
+  <p>Ouvrez les DevTools → onglet <strong>Application</strong> (ou Storage) → Local Storage.</p>
+
+  <label for="filter">Filtre préféré</label>
+  <select id="filter">
+    <option value="all">Tous les projets</option>
+    <option value="dercetech">Dercetech uniquement</option>
+    <option value="dynostorm">DynoStorm uniquement</option>
+  </select>
+
+  <label for="notes">Notes personnelles (brouillon)</label>
+  <input type="text" id="notes" placeholder="Écrivez quelque chose…">
+
+  <div>
+    <button id="btn-save">Sauvegarder maintenant</button>
+    <button id="btn-clear">Tout effacer</button>
+  </div>
+
+  <div id="status">Prêt</div>
+
+  <p class="hint">
+    1. Changez le filtre et les notes → cliquez Sauvegarder.<br>
+    2. Regardez Application → Local Storage.<br>
+    3. Rechargez la page → l’état doit revenir.<br>
+    4. Testez aussi sessionStorage (voir les commentaires).
+  </p>
+</body>
+</html>

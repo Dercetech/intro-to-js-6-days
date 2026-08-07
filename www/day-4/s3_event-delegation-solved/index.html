@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event delegation</title>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    button { margin: 0.25rem; padding: 0.35rem 0.7rem; font-size: 0.95rem; cursor: pointer; }
+    #task-list { list-style: none; padding: 0; margin: 1rem 0; }
+    #task-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.4rem;
+      background: #f4f4f4;
+      border-radius: 4px;
+    }
+    #task-list li span { flex: 1; }
+    .delete { background: #e74c3c; color: white; border: none; border-radius: 3px; }
+    .delete:hover { background: #c0392b; }
+    #add-btn { margin-top: 0.5rem; }
+    #log { margin-top: 1.5rem; padding: 1rem; background: #f4f4f4; min-height: 4rem; white-space: pre-wrap; font-family: monospace; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Section 03 – Event delegation</h1>
+  <p>Ouvrez la Console et le panneau Elements (F12). Travaillez dans scripts.js.</p>
+
+  <ul id="task-list">
+    <li data-id="1"><span>Apprendre addEventListener</span> <button class="delete" type="button">Supprimer</button></li>
+    <li data-id="2"><span>Comprendre preventDefault</span> <button class="delete" type="button">Supprimer</button></li>
+    <li data-id="3"><span>Maîtriser la délégation</span> <button class="delete" type="button">Supprimer</button></li>
+  </ul>
+
+  <button id="add-btn" type="button">Ajouter une tâche</button>
+
+  <div id="log">Log…</div>
+</body>
+</html>

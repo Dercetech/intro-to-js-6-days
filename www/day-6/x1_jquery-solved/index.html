@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extra – jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 520px; margin: 2rem auto; padding: 0 1rem; }
+    button, .item { margin: 0.4rem 0.4rem 0.4rem 0; padding: 0.45rem 0.9rem; font-size: 1rem; cursor: pointer; }
+    .item { display: inline-block; background: #eee; border-radius: 4px; }
+    .item.active { background: #2196f3; color: white; }
+    #title { margin: 1rem 0; }
+    #log { margin-top: 1.5rem; padding: 1rem; background: #f4f4f4; min-height: 3rem; font-family: monospace; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Extra – jQuery</h1>
+  <p>Ouvrez la Console. Travaillez dans scripts.js.</p>
+
+  <h2 id="title">Titre original</h2>
+
+  <button id="my-btn">Bouton principal</button>
+  <button id="btn-toggle">Toggle classe</button>
+
+  <div>
+    <span class="item">Item A</span>
+    <span class="item">Item B</span>
+    <span class="item">Item C</span>
+  </div>
+
+  <div id="log"></div>
+</body>
+</html>

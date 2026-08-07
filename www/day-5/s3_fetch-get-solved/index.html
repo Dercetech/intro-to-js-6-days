@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>fetch GET + Network</title>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    button { margin: 0.5rem 0.5rem 0.5rem 0; padding: 0.4rem 0.8rem; font-size: 1rem; }
+    #status { margin: 1rem 0; min-height: 1.5rem; color: #555; }
+    #project-list { margin-top: 1rem; padding-left: 1.2rem; }
+    #project-list li { margin: 0.4rem 0; }
+    a { color: #06c; }
+  </style>
+</head>
+<body>
+  <h1>Section 03 – fetch GET</h1>
+  <p>Ouvrez les DevTools → onglet <strong>Network</strong> avant de cliquer.</p>
+
+  <button id="btn-load">Charger les projets</button>
+  <button id="btn-clear">Vider la liste</button>
+
+  <div id="status"></div>
+  <ul id="project-list"></ul>
+</body>
+</html>

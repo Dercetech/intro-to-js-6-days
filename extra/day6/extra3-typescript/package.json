@@ -1,0 +1,14 @@
+{
+  "name": "extra3-typescript",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "copy": "node -e \"const fs=require('node:fs');fs.mkdirSync('dist',{recursive:true});fs.copyFileSync('index.html','dist/index.html');fs.cpSync('assets','dist/assets',{recursive:true})\"",
+    "dev": "npm run copy && tsc --watch",
+    "build": "tsc && npm run copy",
+    "serve": "npx --yes serve dist -p 3456"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

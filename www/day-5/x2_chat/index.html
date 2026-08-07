@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini-chat</title>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    label { display: block; margin: 0.6rem 0 0.2rem; }
+    input { padding: 0.4rem 0.6rem; font-size: 1rem; width: 100%; max-width: 320px; box-sizing: border-box; }
+    button { margin: 0.6rem 0.5rem 0.5rem 0; padding: 0.4rem 0.8rem; font-size: 1rem; }
+    #status {
+      margin: 1rem 0;
+      padding: 0.6rem 0.8rem;
+      min-height: 1.4rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    #status[data-state="loading"] { background: #fff3cd; color: #856404; }
+    #status[data-state="success"] { background: #d4edda; color: #155724; }
+    #status[data-state="error"]   { background: #f8d7da; color: #721c24; }
+    #messages {
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      padding: 0.8rem;
+      min-height: 120px;
+      max-height: 280px;
+      overflow-y: auto;
+      background: #fafafa;
+      font-size: 0.95rem;
+    }
+    .msg { margin: 0.35rem 0; }
+    .msg strong { color: #333; }
+    .msg time { color: #888; font-size: 0.8rem; margin-left: 0.4rem; }
+    .hint { font-size: 0.9rem; color: #666; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Extra x2 – Mini-chat</h1>
+  <p>Ouvrez Network avant chaque action. Les messages se rechargent automatiquement toutes les secondes.</p>
+
+  <div>
+    <button id="btn-load">Charger les messages</button>
+    <button id="btn-clear">Effacer le chat</button>
+  </div>
+
+  <div id="status" data-state="">Prêt</div>
+  <div id="messages"></div>
+
+  <label for="user">Votre nom</label>
+  <input type="text" id="user" placeholder="ex: alice" value="anonyme">
+
+  <label for="message">Message</label>
+  <input type="text" id="message" placeholder="Écrivez un message…">
+
+  <button id="btn-send">Envoyer</button>
+
+  <p class="hint">
+    1. Chargez les messages existants.<br>
+    2. Envoyez-en un ou deux.<br>
+    3. Rechargez → le nouveau message doit apparaître.<br>
+    4. Testez le bouton Effacer.<br>
+    5. Observez GET vs POST dans Network (method + payload).<br>
+    6. Repérez le GET automatique toutes les secondes.
+  </p>
+</body>
+</html>

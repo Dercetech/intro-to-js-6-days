@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phases, preventDefault, stopPropagation</title>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    button, a, input[type="submit"] { margin: 0.4rem 0.4rem 0.4rem 0; padding: 0.4rem 0.8rem; font-size: 1rem; }
+    .box { border: 2px solid #333; padding: 1rem; margin: 1rem 0; }
+    .inner { border: 2px dashed #666; padding: 0.8rem; margin-top: 0.5rem; background: #f9f9f9; }
+    #log { margin-top: 1.5rem; padding: 1rem; background: #f4f4f4; min-height: 5rem; white-space: pre-wrap; font-family: monospace; font-size: 0.9rem; }
+    form { margin: 1rem 0; padding: 1rem; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>Section 02 – Phases, preventDefault, stopPropagation</h1>
+  <p>Ouvrez la Console et Sources (F12). Activez les Event Listener Breakpoints (Mouse → click). Travaillez dans scripts.js.</p>
+
+  <p>
+    <a href="https://example.com" id="external-link">Lien externe (exemple.com)</a>
+  </p>
+
+  <div class="box" id="outer">
+    Zone externe (parent)
+    <div class="inner" id="inner">
+      Zone interne (enfant)
+      <button id="btn-inner">Bouton intérieur</button>
+    </div>
+  </div>
+
+  <form id="demo-form">
+    <label>Nom : <input type="text" name="name" value="Ada"></label>
+    <button type="submit">Soumettre le formulaire</button>
+  </form>
+
+  <div>
+    <input type="text" id="key-field" placeholder="Tapez ici (écoute keydown)">
+  </div>
+
+  <div id="log">Log des événements…</div>
+</body>
+</html>

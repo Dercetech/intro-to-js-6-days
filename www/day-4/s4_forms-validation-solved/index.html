@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forms : validation &amp; FormData</title>
+  <script src="scripts.js" defer></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 2rem auto; padding: 0 1rem; }
+    label { display: block; margin-top: 1rem; font-weight: 600; }
+    input, select, textarea { display: block; width: 100%; margin-top: 0.3rem; padding: 0.45rem 0.6rem; font-size: 1rem; box-sizing: border-box; }
+    button[type="submit"] { margin-top: 1.5rem; padding: 0.55rem 1.2rem; font-size: 1rem; cursor: pointer; }
+    #result { margin-top: 1.5rem; padding: 1rem; background: #f4f4f4; min-height: 4rem; white-space: pre-wrap; font-family: monospace; font-size: 0.9rem; }
+    .hint { font-size: 0.85rem; color: #555; font-weight: normal; }
+  </style>
+</head>
+<body>
+  <h1>Section 04 – Forms</h1>
+  <p>Ouvrez la Console et Sources (F12). Activez Event Listener Breakpoints → Control → submit. Travaillez dans scripts.js.</p>
+
+  <form id="signup-form" novalidate>
+    <label>
+      Prénom
+      <input type="text" name="firstName" required minlength="2" placeholder="Ada">
+    </label>
+
+    <label>
+      Email
+      <input type="email" name="email" required placeholder="ada@example.com">
+    </label>
+
+    <label>
+      Âge
+      <input type="number" name="age" min="16" max="120" placeholder="28">
+      <span class="hint">Optionnel – entre 16 et 120</span>
+    </label>
+
+    <label>
+      Niveau
+      <select name="level" required>
+        <option value="">— choisir —</option>
+        <option value="beginner">Débutant</option>
+        <option value="intermediate">Intermédiaire</option>
+        <option value="advanced">Avancé</option>
+      </select>
+    </label>
+
+    <label>
+      Message
+      <textarea name="message" rows="3" maxlength="200" placeholder="Quelques mots…"></textarea>
+    </label>
+
+    <label>
+      <input type="checkbox" name="terms" value="accepted" required>
+      J’accepte les conditions
+    </label>
+
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <div id="result">Résultat de la soumission…</div>
+</body>
+</html>
