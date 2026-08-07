@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exploration du panneau Elements · Corrigé</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 640px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.5;
+    }
+    h1 {
+      color: #1a365d;
+    }
+    .card {
+      border: 2px solid #cbd5e0;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      background: #f7fafc;
+    }
+    .highlight {
+      background: #fef3c7;
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Page de terrain de jeu</h1>
+
+  <p>Cette page n’a qu’un but : vous donner des éléments à inspecter et à modifier en direct.</p>
+
+  <div class="card" id="main-card">
+    <h2>Carte exemple</h2>
+    <p>Vous pouvez changer ce texte, cette classe, ou le style de la carte.</p>
+    <p>Un peu de <span class="highlight">texte surligné</span> pour jouer.</p>
+  </div>
+
+  <p>
+    <button type="button" id="demo-btn">Bouton inoffensif</button>
+  </p>
+
+  <ul>
+    <li>Premier élément de liste</li>
+    <li>Deuxième élément de liste</li>
+    <li>Troisième élément de liste</li>
+  </ul>
+</body>
+</html>
