@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Reactor 4 – Intégration (solution)</title>
   <style>
-    body { font-family: system-ui, sans-serif; background: #1a1a1a; color: #e0e0e0; margin: 0; padding: 1.5rem; }
+    body { box-sizing: border-box; display: flex; flex-direction: column; min-height: 100vh; font-family: system-ui, sans-serif; background: #1a1a1a; color: #e0e0e0; margin: 0; padding: 1.5rem; }
     h1 { font-size: 1.25rem; margin-bottom: 1rem; color: #ffcc00; }
     .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; max-width: 960px; }
     .panel { background: #2a2a2a; border: 1px solid #444; border-radius: 6px; padding: 1rem; }
@@ -27,6 +27,14 @@
     .status-light { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: #4caf50; margin-right: 0.4rem; vertical-align: middle; }
     .status-light.warning { background: #ff9800; }
     .status-light.critical { background: #f44336; }
+    .site-footer { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: auto; padding-top: 1.5rem; border-top: 1px solid #444; color: #999; font-size: 0.8rem; }
+    .site-footer p { margin: 0; }
+    .site-footer p:last-child { text-align: right; }
+    .site-footer a { color: #64b5f6; }
+    @media (max-width: 700px) {
+      .site-footer { flex-direction: column; }
+      .site-footer p:last-child { text-align: left; }
+    }
   </style>
 </head>
 <body>
@@ -90,6 +98,15 @@
     </section>
 
   </div>
+
+  <footer class="site-footer">
+    <p>© Dercetech SRL 2014–2026</p>
+    <p>
+      based on the sloppy browser game “<a href="https://bad-sector.games/webgames/reactor-hero/?lang=en" target="_blank" rel="noopener">Reactor Hero</a>” by <a href="https://bad-sector.games/" target="_blank" rel="noopener">Bad Sector Games</a><br>
+      — pour les personnes qui se demandent ce qui se passerait si elles touchaient vraiment aux commandes.<br>
+      <a href="https://www.youtube.com/watch?v=jBwSuSuGhyk" target="_blank" rel="noopener">Véritable support de formation sur les réacteurs RBMK</a> (en français, aride).
+    </p>
+  </footer>
 
   <script src="scripts.js"></script>
 </body>

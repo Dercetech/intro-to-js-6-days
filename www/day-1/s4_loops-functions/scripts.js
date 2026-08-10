@@ -6,7 +6,12 @@
 
 // 1. Boucle for
 //    Affichez les nombres de 0 à 9 avec une boucle for.
+// let i;
+// for (i = 0; i < 5; i++) {
+//   console.log(i);
+// }
 
+// console.log(i);
 
 // 2. Boucle while
 //    Affichez les nombres de 10 à 1 (dans cet ordre) avec une boucle while.
@@ -26,6 +31,30 @@
 
 // 5. Fonction expression
 //    Écrivez la même logique en function expression (const isOdd = function...).
+
+// console.log(`it is ${myFunc()}`)
+
+// function myFunc() {
+// let myFunc = function () {
+// let myFunc = () => {
+//   return true;
+// }
+// let myRes = () => true
+// console.log(`it is now ${myRes()}`)
+
+// function myHandler(theValue) {
+const myHandler = (theValue) => {
+  console.log("done processing: " + theValue)
+}
+
+// function processSomething(myInput, aHandler) {
+((myInput, aHandler) => aHandler(myInput + 2))(3, (theValue) => console.log("done processing: " + theValue))
+
+// processSomething(2, myHandler);
+
+
+// ((myInput, aHandler) => aHandler(myInput + 2))(2, (theValue) => console.log("done processing: " + theValue))
+
 
 
 // 6. Arrow function

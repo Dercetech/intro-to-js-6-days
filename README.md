@@ -108,6 +108,7 @@ Objectif : manipuler tableaux et objets, comprendre les closures et observer ré
 | 05 | [`this` : comprendre le problème et les solutions](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-2.html#this-rules) | `www/day-2/s5_this/` |
 | Extra 1 | [JSON](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-2.html#json) | `www/day-2/x1_json/` |
 | Extra 2 | [localStorage](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-2.html#local-storage) | `www/day-2/x2_local-storage/` |
+| Récap | [Exploration d’un store Redux minimal](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-2.html#recap) | [Day2_redux](https://github.com/Dercetech/js-extra/tree/main/Day2_redux) |
 
 DevTools : Sources, breakpoints, pas à pas, Scope, Watch et call stack.
 
@@ -122,7 +123,7 @@ Objectif : sélectionner, lire, modifier, créer et supprimer des éléments san
 | 03 | [Créer, insérer et supprimer](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-3.html#create-insert) | `www/day-3/s3_create-insert/` |
 | 04 | [Intégration pratique](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-3.html#integration) | `www/day-3/s4_integration/` |
 | Extra 1 | [jQuery : lire le code des années 2010](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-3.html#jquery) | `www/day-3/x1_jquery/` |
-| Extra 2 | [Reactor Hero](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-3.html#reactor-hero) | [Application en ligne](https://bad-sector.games/webgames/reactor-hero/?lang=en) |
+| Récap | [Faire évoluer l’application de notes](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-3.html#recap) | [Day3_redux](https://github.com/Dercetech/js-extra/tree/main/Day3_redux) |
 
 DevTools : Elements et Console, avec vérification immédiate de l’état du DOM.
 
@@ -138,6 +139,7 @@ Objectif : comprendre le trajet d’un événement, traiter les interactions et 
 | 04 | [Forms : validation & FormData](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-4.html#forms-validation) | `www/day-4/s4_forms-validation/` |
 | 05 | [Keyboard & mouse essentials](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-4.html#keyboard-mouse) | `www/day-4/s5_keyboard-mouse/` |
 | Extra 1 | [Le bouton qui fuit](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-4.html#moving-button) | `www/day-4/x1_moving-button/` |
+| Récap | [Lab libre](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-4.html#recap) | [Day4_redux](https://github.com/Dercetech/js-extra/tree/main/Day4_redux) |
 
 DevTools : Event Listeners, breakpoints d’événements et inspection de l’objet `event`.
 
@@ -154,6 +156,7 @@ Objectif : gérer les résultats différés, les erreurs et les états d’inter
 | 05 | [localStorage / sessionStorage](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-5.html#storage) | `www/day-5/s5_storage/` |
 | Extra 1 | [axios : aperçu](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-5.html#axios) | `www/day-5/x1_axios/` |
 | Extra 2 | [Mini-chat](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-5.html#chat) | `www/day-5/x2_chat/` |
+| Récap | [Lab libre](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-5.html#recap) | [Day5_redux](https://github.com/Dercetech/js-extra/tree/main/Day5_redux) |
 
 DevTools : Network, statuts HTTP, payloads, réponses, timing et simulation des erreurs.
 
@@ -170,6 +173,7 @@ Objectif : découper le code en modules, reconnaître les fonctions d’ordre su
 | Extra 1 | [jQuery](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-6.html#jquery-extra) | `www/day-6/x1_jquery/` |
 | Extra 2 | [Chart.js](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-6.html#chartjs-extra) | `www/day-6/x2_chartjs/` |
 | Extra 3 | [Aperçu TypeScript](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-6.html#typescript-extra) | `www/day-6/x3_typescript/` |
+| Récap | [Refactoriser l’application de notes en modules](https://training.dercetech.com/trainings/javascript-vanilla-devtools/day-6.html#recap) | [Day6_redux](https://github.com/Dercetech/js-extra/tree/main/Day6_redux) |
 
 DevTools : Sources et Network avec modules ES, vérification des frontières entre fichiers et diagnostic d’intégration.
 
