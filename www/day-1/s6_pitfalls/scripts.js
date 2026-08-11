@@ -8,6 +8,26 @@
 //    Reproduisez l’exemple var (affiche 3, 3, 3).
 //    Puis la version let (affiche 0, 1, 2).
 
+const user = {
+  name: "Alex",
+  greet() {
+    const that = this;
+
+    // This dynamique
+    setTimeout(function () {
+      console.log("Bonjour (this) " + this.name);
+      console.log("Bonjour (that) " + that.name);
+    }, 1000);
+
+    // This lexical (hérite scope parent)
+    setTimeout(() => {
+      console.log("Bonjour (arrow)" + this.name);
+    }, 1000);
+  }
+};
+
+user.greet()
+
 
 // 2. Temporal Dead Zone
 //    Décommentez la ligne console.log(a) avant la déclaration
